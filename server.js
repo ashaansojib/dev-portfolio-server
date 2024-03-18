@@ -10,9 +10,16 @@ const PORT = process.env.PORT || 9988;
 dotenv.config({ path: "./config/config.env" });
 const connectDB = require("./config/db");
 
+// load routes
+const projects = require("./routes/projects");
+
 // called middilewares
 app.use(express.json());
 app.use(cors());
+
+// called routes here
+app.use("/api/projects", projects);
+app.use("/api/projects/:id", projects);
 
 // db connection called here
 connectDB();
