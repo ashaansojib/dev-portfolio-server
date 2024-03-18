@@ -9,9 +9,13 @@ const PORT = process.env.PORT || 9988;
 // load config vars & others
 dotenv.config({ path: "./config/config.env" });
 const connectDB = require("./config/db");
+const errorHandler = require("./middleware/error");
 
 // load routes
 const projects = require("./routes/projects");
+
+// db connection called here
+connectDB();
 
 // called middilewares
 app.use(express.json());
@@ -21,8 +25,8 @@ app.use(cors());
 app.use("/api/projects", projects);
 app.use("/api/projects/:id", projects);
 
-// db connection called here
-connectDB();
+// error handler must be call after the routes called!!
+app.use(errorHandler);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
