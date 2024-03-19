@@ -9,6 +9,7 @@ const projectSchema = new mongoose.Schema({
   },
   category: {
     type: String,
+    lower: true,
     required: [true, "Please add a Category"],
   },
   links: {
@@ -26,6 +27,10 @@ const projectSchema = new mongoose.Schema({
   filename: {
     type: String,
   },
+  createAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 projectSchema.pre("save", function (next) {
