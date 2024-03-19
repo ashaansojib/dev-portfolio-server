@@ -37,6 +37,19 @@ exports.getProject = async (req, res, next) => {
   }
 };
 
+// @desc    = filter by category
+// @@route  = /api/projects/?category=MERN-stack
+// @access  = public
+exports.getProjectByCat = async (req, res, next) => {
+  try {
+    const category = req.query;
+    const results = await devProjects.find(category);
+    res.status(200).json({ success: true, data: results })
+  } catch (err) {
+    next(err)
+  }
+}
+
 // @desc    = delete a projects
 // @route   = /api/projects/:id
 // @access  = privet
