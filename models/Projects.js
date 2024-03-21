@@ -18,7 +18,7 @@ const projectSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: [true, "Add a Image Link"],
+    default: "demo-image.jpg"
   },
   tools: {
     type: Array,
