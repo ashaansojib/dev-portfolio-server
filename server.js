@@ -3,7 +3,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const colors = require("colors");
 const dotenv = require("dotenv");
-const fileUpload = require("express-fileupload")
+const path = require("path");
+const fileUpload = require("express-fileupload");
 const app = express();
 const PORT = process.env.PORT || 9988;
 
@@ -23,6 +24,9 @@ app.use(express.json());
 app.use(cors());
 // file upload middleware
 app.use(fileUpload());
+
+// set static public folder for any hosting wharever we want to install that application
+app.use(express.static(path.join(__dirname, "public")));
 
 // called routes here
 app.use("/api/projects", projects);
