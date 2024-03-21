@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const colors = require("colors");
 const dotenv = require("dotenv");
+const fileUpload = require("express-fileupload")
 const app = express();
 const PORT = process.env.PORT || 9988;
 
@@ -20,6 +21,8 @@ connectDB();
 // called middilewares
 app.use(express.json());
 app.use(cors());
+// file upload middleware
+app.use(fileUpload());
 
 // called routes here
 app.use("/api/projects", projects);

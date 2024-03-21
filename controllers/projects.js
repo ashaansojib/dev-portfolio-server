@@ -1,5 +1,6 @@
 const devProjects = require("../models/Projects");
 const asyncHandler = require("../middleware/async");
+const ErrorResponse = require("../utils/errorResponse");
 // @desc    = fetch all projects data
 // @route   = /api/projects
 // access   = public
@@ -46,4 +47,13 @@ exports.removeProject = asyncHandler(async (req, res, next) => {
   const query = await devProjects.deleteOne({ _id: id });
   res.status(200).json({ success: true, data: query });
 
+});
+
+// @desc  = upload file
+// @route = /api/projects/:id/photo
+// access = privet
+exports.uploadProjectPhoto = asyncHandler(async (req, res, next) => {
+  const id = req.params.id;
+  return console.log(id);
+  const finding = await devProjects.findById({ _id: id });
 });
