@@ -15,8 +15,11 @@ exports.getProjects = asyncHandler(async (req, res, next) => {
 // @access  = privet
 exports.createProject = asyncHandler(async (req, res, next) => {
   const projectData = req.body;
+
   const results = await devProjects.create(projectData);
+
   res.status(201).json({ success: true, data: results });
+  console.log(results._id);
 });
 
 // @desc    = single project find
