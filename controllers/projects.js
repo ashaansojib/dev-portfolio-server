@@ -6,8 +6,12 @@ const ErrorResponse = require("../utils/errorResponse");
 // @route   = /api/projects
 // access   = public
 exports.getProjects = asyncHandler(async (req, res, next) => {
-  const projects = await devProjects.find();
-  res.status(200).json({ success: true, data: projects });
+  let query = req.query;
+  const projects = await devProjects.find(query);
+  res
+    .status(200)
+    .json({ success: true, data: projects, count: projects.length });
+  console.log("query", query);
 });
 
 // @desc    = add a project

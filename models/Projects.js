@@ -24,7 +24,7 @@ const projectSchema = new mongoose.Schema({
     type: Array,
     required: [true, "Must add all tools & packages name"],
   },
-  livelink:{
+  liveLink:{
     type: String,
     required: true,
   },
