@@ -7,13 +7,13 @@ const ErrorResponse = require("../utils/errorResponse");
 // access   = public
 exports.getProjects = asyncHandler(async (req, res, next) => {
   let query = req.query;
-  if (query.category) {
-    const projects = await devProjects.find(query);
+  if (!query.category || query.category === "all") {
+    const projects = await devProjects.find();
     return res
       .status(200)
       .json({ success: true, data: projects, count: projects.length });
   }
-  const projects = await devProjects.find();
+  const projects = await devProjects.find(query);
   res
     .status(200)
     .json({ success: true, data: projects, count: projects.length });
